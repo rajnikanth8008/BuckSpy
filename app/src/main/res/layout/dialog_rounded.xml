@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_rounded_bg"
+    android:minWidth="260dp"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/petrona"
+        android:text="TITLE"
+        android:gravity="center"
+        android:textSize="@dimen/_12sdp"
+        android:layout_margin="@dimen/_2sdp"
+        android:textColor="@android:color/holo_red_dark"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/petrona"
+        android:text="Dialog Subtitle"
+        android:gravity="center"
+        android:layout_margin="@dimen/_2sdp"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="@android:color/holo_blue_dark"/>
+</LinearLayout>
