@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_favorites"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        app:showAsAction="ifRoom"
+        android:title="Home" />
+    <item
+        android:id="@+id/action_schedules"
+        android:enabled="true"
+        android:icon="@drawable/ic_stats"
+        app:showAsAction="ifRoom"
+        android:title="Dash Board" />
+    <item
+        android:id="@+id/action_music"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:visible="false"
+        android:icon="@drawable/ic_plus"/>
+
+    <item
+        android:id="@+id/action_bio"
+        android:enabled="true"
+        android:icon="@android:drawable/alert_dark_frame"
+        app:showAsAction="ifRoom"
+        android:title="" />
+
+    <item
+        android:id="@+id/action_pro"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:title="Profile"
+        android:icon="@drawable/ic_userprofile"/>
+</menu>

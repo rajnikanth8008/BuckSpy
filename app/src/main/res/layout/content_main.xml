@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
+
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -15,7 +14,9 @@
         android:layout_marginTop="@dimen/_5sdp"
         app:cardBackgroundColor="@color/cardview_dark_background"
         app:cardCornerRadius="6dp"
-        app:cardElevation="5dp">
+        app:cardElevation="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,6 +57,7 @@
                 </LinearLayout>
 
                 <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/cim_profilephoto"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
                     android:src="@drawable/profilepic" />
@@ -71,13 +73,17 @@
         android:layout_margin="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_5sdp"
         app:cardCornerRadius="6dp"
-        app:cardElevation="5dp">
+        app:cardElevation="5dp"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/_6sdp">
+            android:padding="@dimen/_6sdp"
+            android:foreground="?android:selectableItemBackground"
+            android:clickable="true">
 
             <TextView
                 android:layout_width="match_parent"
@@ -105,7 +111,10 @@
         android:layout_margin="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_5sdp"
         app:cardCornerRadius="6dp"
-        app:cardElevation="5dp">
+        app:cardElevation="5dp"
+        android:id="@+id/cd_modes"
+        app:layout_constraintStart_toStartOf="@+id/cd_money"
+        app:layout_constraintTop_toBottomOf="@+id/cd_money">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -124,7 +133,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true"
+                android:foreground="?android:selectableItemBackground"
+                android:clickable="true">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -156,7 +168,9 @@
         android:layout_margin="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_5sdp"
         app:cardCornerRadius="6dp"
-        app:cardElevation="5dp">
+        app:cardElevation="5dp"
+        app:layout_constraintStart_toStartOf="@+id/cd_modes"
+        app:layout_constraintTop_toBottomOf="@+id/cd_modes">
 
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -173,5 +187,4 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

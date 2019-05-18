@@ -1,12 +1,14 @@
-package com.example.administrator.buckspy;
+package com.example.administrator.buckspy.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +18,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.administrator.buckspy.R;
+import com.example.administrator.buckspy.adapter.ViewPagerAdapter;
 import com.example.administrator.buckspy.database.DatabaseClient;
 import com.example.administrator.buckspy.entity.UtilizationDetails;
 
@@ -25,9 +29,24 @@ import java.util.Date;
 public class BottomSheetFragment extends BottomSheetDialogFragment {
     View view = null;
     Button bt_cash, bt_card;
-    TextView tv_ctgryType;
+    TextView tv_ctgryType, tv_catagory_selection;
     RadioGroup rg_categories, rg_amounts;
     EditText et_amount, et_description;
+
+    private TabLayout tabLayout;
+
+    //This is our viewPager
+    private ViewPager viewPager;
+
+    ExpenceFragment expenceFragment;
+    IncomeFragment incomeFragment;
+
+    String[] tabTitle = {"EXPENCE", "INCOME"};
+    ViewPagerAdapter viewPagerAdapter = null;
+
+    public BottomSheetFragment(ViewPagerAdapter adapter) {
+        this.viewPagerAdapter = adapter;
+    }
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -39,8 +58,41 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
 
         view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_bottom_sheet, null);
         dialog.setContentView(view);
-        bt_cash = view.findViewById(R.id.bt_cash);
+
+        viewPager = view.findViewById(R.id.viewpager);
+        viewPager.setOffscreenPageLimit(2);
+        setupViewPager(viewPager);
+
+        tabLayout = view.findViewById(R.id.tablayout);
+        tabLayout.setupWithViewPager(viewPager);
+
+//        try {
+//            setupTabIcons();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                viewPager.setCurrentItem(position, false);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+
+        /*bt_cash = view.findViewById(R.id.bt_cash);
         bt_card = view.findViewById(R.id.bt_card);
+        tv_catagory_selection = (view).findViewById(R.id.tv_catagory_selection);
         tv_ctgryType = (view).findViewById(R.id.tv_ctgryType);
         rg_categories = (view).findViewById(R.id.rg_categories);
         et_amount = (view).findViewById(R.id.et_amount);
@@ -55,46 +107,46 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
             }
         });
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) view.getParent()).getLayoutParams();
-        CoordinatorLayout.Behavior behavior = params.getBehavior();
+        CoordinatorLayout.Behavior behavior = params.getBehavior();*/
 
-        if (behavior != null && behavior instanceof BottomSheetBehavior) {
-            ((BottomSheetBehavior) behavior).setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-                @Override
-                public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                    String state = "";
-
-                    switch (newState) {
-                        case BottomSheetBehavior.STATE_DRAGGING: {
-                            state = "DRAGGING";
-                            break;
-                        }
-                        case BottomSheetBehavior.STATE_SETTLING: {
-                            state = "SETTLING";
-                            break;
-                        }
-                        case BottomSheetBehavior.STATE_EXPANDED: {
-                            state = "EXPANDED";
-                            break;
-                        }
-                        case BottomSheetBehavior.STATE_COLLAPSED: {
-                            state = "COLLAPSED";
-                            break;
-                        }
-                        case BottomSheetBehavior.STATE_HIDDEN: {
-                            dismiss();
-                            state = "HIDDEN";
-                            break;
-                        }
-                    }
-
-                    Toast.makeText(getContext(), "Bottom Sheet State Changed to: " + state, Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                }
-            });
-        }
+//        if (behavior != null && behavior instanceof BottomSheetBehavior) {
+//            ((BottomSheetBehavior) behavior).setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+//                @Override
+//                public void onStateChanged(@NonNull View bottomSheet, int newState) {
+//                    String state = "";
+//
+//                    switch (newState) {
+//                        case BottomSheetBehavior.STATE_DRAGGING: {
+//                            state = "DRAGGING";
+//                            break;
+//                        }
+//                        case BottomSheetBehavior.STATE_SETTLING: {
+//                            state = "SETTLING";
+//                            break;
+//                        }
+//                        case BottomSheetBehavior.STATE_EXPANDED: {
+//                            state = "EXPANDED";
+//                            break;
+//                        }
+//                        case BottomSheetBehavior.STATE_COLLAPSED: {
+//                            state = "COLLAPSED";
+//                            break;
+//                        }
+//                        case BottomSheetBehavior.STATE_HIDDEN: {
+//                            dismiss();
+//                            state = "HIDDEN";
+//                            break;
+//                        }
+//                    }
+//
+//                    Toast.makeText(getContext(), "Bottom Sheet State Changed to: " + state, Toast.LENGTH_SHORT).show();
+//                }
+//
+//                @Override
+//                public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+//                }
+//            });
+//        }
     }
 
     private void initializeControls() {
@@ -169,4 +221,27 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
             Toast.makeText(getContext(), "Data saved", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void setupViewPager(ViewPager viewPager) {
+//        ViewPagerAdapter adapter = new ViewPagerAdapter(new FragmentActivity().getSupportFragmentManager());
+        expenceFragment = new ExpenceFragment();
+        incomeFragment = new IncomeFragment();
+        viewPagerAdapter.addFragment(expenceFragment, "EXPENCE");
+        viewPagerAdapter.addFragment(incomeFragment, "INCOME");
+        viewPager.setAdapter(viewPagerAdapter);
+    }
+
+    private void setupTabIcons() {
+        for (int i = 0; i < tabTitle.length; i++) {
+            tabLayout.getTabAt(i).setCustomView(prepareTabView(i));
+        }
+    }
+
+    private View prepareTabView(int pos) {
+        View view = getLayoutInflater().inflate(R.layout.custom_tab, null);
+        TextView tv_title = (TextView) view.findViewById(R.id.tv_title);
+        tv_title.setText(tabTitle[pos]);
+        return view;
+    }
+
 }

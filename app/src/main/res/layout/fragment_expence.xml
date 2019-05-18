@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardElevation="10dp"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:id="@+id/rg_categories"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_fooddrinks"
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/ic_food"
+                        android:fontFamily="@font/petrona"
+                        android:tag="101"
+                        android:text="Food &amp; Drinks"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_shopping"
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/shopping"
+                        android:fontFamily="@font/petrona"
+                        android:tag="102"
+                        android:text="Shopping"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_bill"
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/bill"
+                        android:fontFamily="@font/petrona"
+                        android:tag="103"
+                        android:text="Bills"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_travel"
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/travel"
+                        android:fontFamily="@font/petrona"
+                        android:tag="104"
+                        android:text="Travel"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_others"
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/others"
+                        android:fontFamily="@font/petrona"
+                        android:tag="105"
+                        android:text="Other"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_unknown"
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/unknown"
+                        android:fontFamily="@font/petrona"
+                        android:tag="106"
+                        android:text="Unknown"
+                        android:textSize="@dimen/_10sdp" />
+                </RadioGroup>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/tv_ctgryType"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/petrona"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/petrona"
+            android:text="Spent"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_amount"
+            style="@style/MyRadioButtonRight"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:cursorVisible="false"
+            android:drawableLeft="@mipmap/rupee"
+            android:fontFamily="@font/petrona"
+            android:gravity="left|center"
+            android:hint="Enter Amount"
+            android:inputType="number"
+            android:maxLength="8"
+            android:textSize="@dimen/_15sdp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:id="@+id/rg_amounts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:fontFamily="@font/petrona"
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text="10"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:fontFamily="@font/petrona"
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text="20"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:fontFamily="@font/petrona"
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text="50"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:fontFamily="@font/petrona"
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text="100"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:fontFamily="@font/petrona"
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text="200"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:fontFamily="@font/petrona"
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text="500"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:fontFamily="@font/petrona"
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text="2000"
+                        android:textSize="@dimen/_10sdp" />
+
+                </RadioGroup>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:id="@+id/ll_categoryselection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:orientation="horizontal"
+            android:padding="@dimen/_4sdp">
+
+            <TextView
+                android:id="@+id/tv_catagory_img"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:background="@drawable/ic_info"
+                android:fontFamily="@font/petrona"
+                android:gravity="center"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_catagory_selection"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:fontFamily="@font/petrona"
+                android:gravity="center|start"
+                android:text="Choose Category"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/sp_choose_category"
+            style="@style/MyRadioButtonRight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/petrona"
+            android:text="Description"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_description"
+            style="@style/MyRadioButtonRight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cursorVisible="false"
+            android:fontFamily="@font/petrona"
+            android:gravity="left|center"
+            android:hint="Enter Description"
+            android:lines="2"
+            android:maxLength="50"
+            android:textSize="@dimen/_15sdp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_cash"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@android:color/black"
+                android:fontFamily="@font/petrona"
+                android:text="Cash"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/bt_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@android:color/black"
+                android:fontFamily="@font/petrona"
+                android:text="Card"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
