@@ -17,8 +17,9 @@
         android:id="@+id/action_music"
         android:enabled="true"
         app:showAsAction="ifRoom"
-        android:visible="false"
-        android:icon="@drawable/ic_plus"/>
+        android:visible="true"
+        android:icon="@drawable/ic_plus"
+        android:title="" />
 
     <item
         android:id="@+id/action_bio"

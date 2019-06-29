@@ -66,7 +66,7 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cd_money"
+        android:id="@+id/cd_inc_total"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -75,15 +75,66 @@
         app:cardCornerRadius="6dp"
         app:cardElevation="5dp"
         app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">>
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <TextView
+            android:id="@+id/tv_total_month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/petrona"
+            android:text="January"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/_5sdp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:foreground="?android:selectableItemBackground"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tv_total_income"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/rupee"
+                android:fontFamily="@font/baloo"
+                android:text="25000"
+                android:textSize="@dimen/_20sdp"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/tv_total_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/rupee"
+                android:fontFamily="@font/baloo"
+                android:text="5000"
+                android:textSize="@dimen/_20sdp"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cd_this_month_total_spent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="5dp"
+        app:layout_constraintStart_toStartOf="@+id/cd_inc_total"
+        app:layout_constraintTop_toBottomOf="@+id/cd_inc_total">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/_6sdp"
+            android:clickable="true"
             android:foreground="?android:selectableItemBackground"
-            android:clickable="true">
+            android:orientation="vertical"
+            android:padding="@dimen/_6sdp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -104,7 +155,9 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
+
     <android.support.v7.widget.CardView
+        android:id="@+id/cd_modes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -112,9 +165,8 @@
         android:layout_marginTop="@dimen/_5sdp"
         app:cardCornerRadius="6dp"
         app:cardElevation="5dp"
-        android:id="@+id/cd_modes"
-        app:layout_constraintStart_toStartOf="@+id/cd_money"
-        app:layout_constraintTop_toBottomOf="@+id/cd_money">
+        app:layout_constraintStart_toStartOf="@+id/cd_this_month_total_spent"
+        app:layout_constraintTop_toBottomOf="@+id/cd_this_month_total_spent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -133,10 +185,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
+                android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:selectableItemBackground"
-                android:clickable="true">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="match_parent"

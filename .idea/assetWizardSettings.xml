@@ -149,11 +149,11 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="height" value="496" />
-                            <entry key="outputName" value="ic_transport" />
+                            <entry key="height" value="512" />
+                            <entry key="outputName" value="ic_sales" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\Administrator\Downloads\New folder\transport.svg" />
-                            <entry key="width" value="496" />
+                            <entry key="sourceFile" value="E:\Rajnikanth_workspace\bSpy\bSpy\sales.svg" />
+                            <entry key="width" value="512" />
                           </map>
                         </option>
                       </PersistentState>

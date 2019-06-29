@@ -27,7 +27,8 @@ import android.widget.Toast;
 
 import com.example.administrator.buckspy.adapter.ViewPagerAdapter;
 import com.example.administrator.buckspy.database.DatabaseClient;
-import com.example.administrator.buckspy.entity.UtilizationCategoryMaster;
+import com.example.administrator.buckspy.entity.AccountDetails;
+import com.example.administrator.buckspy.entity.CategoryDetails;
 import com.example.administrator.buckspy.fragment.AddFragment;
 import com.example.administrator.buckspy.fragment.BottomSheetFragment;
 import com.example.administrator.buckspy.fragment.HomeFragment;
@@ -42,11 +43,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
     public static final String TAG = "bottom_sheet";
+    public static final int[] CustomisedColours = {
+            Color.rgb(247, 203, 180), Color.rgb(234, 247, 180), Color.rgb(84, 109, 76),
+            Color.rgb(181, 199, 201), Color.rgb(65, 79, 112), Color.rgb(118, 94, 124)
+    };
     CircleImageView cim_profilephoto;
     TextView tv_add;
     String[] permissionsRequired = new String[]{Manifest.permission.CAMERA,
@@ -65,19 +71,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         CurvedBottomNavigationView.disableShiftMode(curvedBottomNavigationView);
         curvedBottomNavigationView.setOnNavigationItemSelectedListener(this);
         loadFragment(new HomeFragment());
-//        (curvedBottomNavigationView.findViewById(R.id.action_favorites)).setOnClickListener(this);
-//        (curvedBottomNavigationView.findViewById(R.id.action_schedules)).setOnClickListener(this);
-//        (curvedBottomNavigationView.findViewById(R.id.action_music)).setOnClickListener(this);
-//        (curvedBottomNavigationView.findViewById(R.id.action_bio)).setOnClickListener(this);
-//        (curvedBottomNavigationView.findViewById(R.id.action_pro)).setOnClickListener(this);
 
 //        showPieChart();
         tv_add = findViewById(R.id.tv_add);
         tv_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-                BottomSheetFragment fragment = new BottomSheetFragment(adapter);
+                BottomSheetFragment fragment = new BottomSheetFragment(MainActivity.this);
                 fragment.show(getSupportFragmentManager(), TAG);
             }
         });
@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                selectImage();
 //            }
 //        });
-        new saveUtilizationCategoryMaster().execute();
-
+        new saveCategoryMaster().execute();
+        new saveAccountMaster().execute();
     }
 
     @Override
@@ -151,28 +151,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public static final int[] CustomisedColours = {
-            Color.rgb(247, 203, 180), Color.rgb(234, 247, 180), Color.rgb(84, 109, 76),
-            Color.rgb(181, 199, 201), Color.rgb(65, 79, 112), Color.rgb(118, 94, 124)
-    };
-
-    public void generateUtilizationCategoryMaster() {
-        UtilizationCategoryMaster[] utilizationCategoryMasters = new UtilizationCategoryMaster[6];
-        utilizationCategoryMasters[0] = utilizationCategoryMasters("101", "Food & Drinks");
-        utilizationCategoryMasters[1] = utilizationCategoryMasters("102", "Shopping");
-        utilizationCategoryMasters[2] = utilizationCategoryMasters("103", "Bills");
-        utilizationCategoryMasters[3] = utilizationCategoryMasters("104", "Travels");
-        utilizationCategoryMasters[4] = utilizationCategoryMasters("105", "Others");
-        utilizationCategoryMasters[5] = utilizationCategoryMasters("106", "UnKnown");
-
-        DatabaseClient.getInstance(this).getAppDatabase().utilizationCategoryMasterDao().insert(utilizationCategoryMasters);
-    }
-
-    private UtilizationCategoryMaster utilizationCategoryMasters(String category_Id, String category_name) {
-        UtilizationCategoryMaster utilizationCategoryMaster = new UtilizationCategoryMaster();
-        utilizationCategoryMaster.setCategory_Id(category_Id);
-        utilizationCategoryMaster.setCategory_name(category_name);
-        return utilizationCategoryMaster;
+    private CategoryDetails categoryDetails(String category_Id, String category_type, String category_name, int resource) {
+        CategoryDetails categoryDetails = new CategoryDetails();
+        categoryDetails.setCreated_timestamp(new Date().getTime());
+//        categoryDetails.setModified_timestamp(0);
+        categoryDetails.setCategory_id(category_Id);
+        categoryDetails.setCategory_type(category_type);
+        categoryDetails.setCategory_name(category_name);
+        categoryDetails.setCategory_description("");
+        categoryDetails.setImage_path(resource + "");
+        return categoryDetails;
     }
 
     @Override
@@ -224,22 +212,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return loadFragment(fragment);
     }
 
-    @SuppressLint("StaticFieldLeak")
-    public class saveUtilizationCategoryMaster extends AsyncTask {
-
-        @Override
-        protected Object doInBackground(Object[] objects) {
-            generateUtilizationCategoryMaster();
-            return "S";
-        }
-
-        @Override
-        protected void onPostExecute(Object o) {
-            super.onPostExecute(o);
-            Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void selectImage() {
         final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -288,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             + "Phoenix" + File.separator + "default";
                     f.delete();
                     OutputStream outFile = null;
-                    File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
+                    File file = new File(path, System.currentTimeMillis() + ".jpg");
                     try {
                         outFile = new FileOutputStream(file);
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
@@ -329,7 +301,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         return false;
     }
-//    public void checkforRunTimePermissions() {
+
+    //    public void checkforRunTimePermissions() {
 //        try {
 //            if (ActivityCompat.checkSelfPermission(MainActivity.this, permissionsRequired[0]) != PackageManager.PERMISSION_GRANTED
 //                    || ActivityCompat.checkSelfPermission(MainActivity.this, permissionsRequired[1]) != PackageManager.PERMISSION_GRANTED
@@ -404,5 +377,110 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            AndroidUtils.logMsg("MainActivity.checkforRunTimePermissions(): " + e.getMessage());
 //        }
 //    }
+    public void generateCategoryMaster() throws Exception {
+        CategoryDetails[] categoryDetails = new CategoryDetails[15];
+//        Date date = new Date();
+//        Timestamp timestamp = new Timestamp(date.getTime());
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        dateFormat.format(timestamp);
+        try {
+            categoryDetails[0] = categoryDetails("CE001", "E", "Bill", R.drawable.ic_bill);
+            categoryDetails[1] = categoryDetails("CE002", "E", "Clothing", R.drawable.ic_clothing);
+            categoryDetails[2] = categoryDetails("CE003", "E", "Drinks", R.drawable.ic_drinks);
+            categoryDetails[3] = categoryDetails("CE004", "E", "Education", R.drawable.ic_education);
+            categoryDetails[4] = categoryDetails("CE005", "E", "Food", R.drawable.ic_food);
+            categoryDetails[5] = categoryDetails("CE006", "E", "Fuel", R.drawable.ic_fuel);
+            categoryDetails[6] = categoryDetails("CE007", "E", "Health", R.drawable.ic_health);
+            categoryDetails[7] = categoryDetails("CE008", "E", "Home", R.drawable.ic_home);
+            categoryDetails[8] = categoryDetails("CE009", "E", "Other", R.drawable.ic_other);
+            categoryDetails[9] = categoryDetails("CE010", "E", "Personal", R.drawable.ic_personal);
+            categoryDetails[10] = categoryDetails("CE011", "E", "Restaurant", R.drawable.ic_restaurant);
+            categoryDetails[11] = categoryDetails("CE012", "E", "Transport", R.drawable.ic_transport);
 
+            categoryDetails[12] = categoryDetails("CI001", "I", "Loan", R.drawable.ic_loan);
+            categoryDetails[13] = categoryDetails("CI002", "I", "Salary", R.drawable.ic_salary);
+            categoryDetails[14] = categoryDetails("CI003", "I", "Sales", R.drawable.ic_sales);
+//            categoryDetails[15] = categoryDetails("CI004", "I", "Choose Category", R.drawable.ic_info);
+//            categoryDetails[16] = categoryDetails("CE013", "E", "Choose Category", R.drawable.ic_info);
+
+            DatabaseClient.getInstance(this).getAppDatabase().categoryDetailsDao().insert(categoryDetails);
+        } catch (Exception e) {
+            e.getMessage();
+            throw e;
+        }
+    }
+
+    public void generateAccountMaster() throws Exception {
+        AccountDetails[] accountDetails = new AccountDetails[3];
+//        Date date = new Date();
+//        Timestamp timestamp = new Timestamp(date.getTime());
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        dateFormat.format(timestamp);
+        try {
+            accountDetails[0] = accountDetails("AC001", "Card", R.drawable.ic_card);
+            accountDetails[1] = accountDetails("AC002", "Cash", R.drawable.ic_cash);
+            accountDetails[2] = accountDetails("AC003", "Savings", R.drawable.ic_savings);
+
+            DatabaseClient.getInstance(this).getAppDatabase().accountDetailsDao().insert(accountDetails);
+        } catch (Exception e) {
+            e.getMessage();
+            throw e;
+        }
+    }
+
+    private AccountDetails accountDetails(String account_id, String account_name, int resource) {
+        AccountDetails accountDetails = new AccountDetails();
+        accountDetails.setCreated_timestamp(new Date().getTime());
+//        accountDetails.setModified_timestamp(0);
+        accountDetails.setAccount_id(account_id);
+        accountDetails.setAccount_name(account_name);
+        accountDetails.setAccount_description("");
+//        accountDetails.setExpire_timestamp(0);
+        accountDetails.setImage_path(resource + "");
+        return accountDetails;
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    public class saveCategoryMaster extends AsyncTask {
+
+        @Override
+        protected String doInBackground(Object[] objects) {
+            try {
+                generateCategoryMaster();
+                return "S";
+            } catch (Exception e) {
+                return "Error : " + e.getMessage();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Object str) {
+            super.onPostExecute(str.toString());
+            if (str.equals("S")) {
+                Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    public class saveAccountMaster extends AsyncTask {
+
+        @Override
+        protected String doInBackground(Object[] objects) {
+            try {
+                generateAccountMaster();
+                return "S";
+            } catch (Exception e) {
+                return "Error : " + e.getMessage();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Object str) {
+            super.onPostExecute(str.toString());
+            if (str.equals("S")) {
+                Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }

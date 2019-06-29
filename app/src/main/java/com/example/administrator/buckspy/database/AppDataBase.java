@@ -3,16 +3,26 @@ package com.example.administrator.buckspy.database;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
-import com.example.administrator.buckspy.dao.UtilizationCategoryMasterDao;
-import com.example.administrator.buckspy.dao.UtilizationDetailsDao;
+import com.example.administrator.buckspy.dao.AccountDetailsDao;
+import com.example.administrator.buckspy.dao.CategoryDetailsDao;
+import com.example.administrator.buckspy.dao.ExpenseDetailsDao;
+import com.example.administrator.buckspy.dao.IncomeDetailsDao;
+import com.example.administrator.buckspy.entity.AccountDetails;
+import com.example.administrator.buckspy.entity.CategoryDetails;
+import com.example.administrator.buckspy.entity.ExpenseDetails;
+import com.example.administrator.buckspy.entity.IncomeDetails;
 import com.example.administrator.buckspy.entity.UserProfile;
-import com.example.administrator.buckspy.entity.UtilizationCategoryMaster;
-import com.example.administrator.buckspy.entity.UtilizationDetails;
 
-@Database(entities = {UtilizationCategoryMaster.class, UtilizationDetails.class, UserProfile.class}, version = 3, exportSchema = false)
+@Database(entities = {CategoryDetails.class, AccountDetails.class, UserProfile.class, ExpenseDetails.class, IncomeDetails.class},
+        version = 5, exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
 
-    public abstract UtilizationDetailsDao utilizationDetailsDao();
-    public abstract UtilizationCategoryMasterDao utilizationCategoryMasterDao();
+    public abstract AccountDetailsDao accountDetailsDao();
+
+    public abstract CategoryDetailsDao categoryDetailsDao();
+
+    public abstract ExpenseDetailsDao expenseDetailsDao();
+
+    public abstract IncomeDetailsDao incomeDetailsDao();
 
 }

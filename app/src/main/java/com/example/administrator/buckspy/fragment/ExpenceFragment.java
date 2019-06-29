@@ -1,6 +1,5 @@
 package com.example.administrator.buckspy.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -15,18 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.buckspy.R;
-import com.example.administrator.buckspy.adapter.CommonSpinnerAdapter;
 import com.example.administrator.buckspy.dao.SpinnerDataDO;
-import com.example.administrator.buckspy.database.DatabaseClient;
-import com.example.administrator.buckspy.entity.UtilizationDetails;
+import com.example.administrator.buckspy.entity.AccountDetails;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ExpenceFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -59,19 +54,19 @@ public class ExpenceFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_expence, container, false);
-        bt_cash = view.findViewById(R.id.bt_cash);
-        bt_card = view.findViewById(R.id.bt_card);
+        bt_cash = view.findViewById(R.id.bt_clear);
+        bt_card = view.findViewById(R.id.bt_add);
         tv_catagory_img = (view).findViewById(R.id.tv_catagory_img);
         tv_catagory_selection = (view).findViewById(R.id.tv_catagory_selection);
-        tv_ctgryType = (view).findViewById(R.id.tv_ctgryType);
-        rg_categories = (view).findViewById(R.id.rg_categories);
+//        tv_ctgryType = (view).findViewById(R.id.tv_ctgryType);
+//        rg_categories = (view).findViewById(R.id.rg_categories);
         et_amount = (view).findViewById(R.id.et_amount);
         et_description = (view).findViewById(R.id.et_description);
         rg_amounts = (view).findViewById(R.id.rg_amounts);
         ll_categoryselection = (view).findViewById(R.id.ll_categoryselection);
         sp_choose_category = (view).findViewById(R.id.sp_choose_category);
-        CommonSpinnerAdapter commonSpinnerAdapter = new CommonSpinnerAdapter((Activity) getContext(), loadCategoryData());
-        sp_choose_category.setAdapter(commonSpinnerAdapter);
+//        CommonSpinnerAdapter commonSpinnerAdapter = new CommonSpinnerAdapter((Activity) getContext(), loadCategoryData());
+//        sp_choose_category.setAdapter(commonSpinnerAdapter);
         spinnerDataDOS = new ArrayList<>();
         initializeControls();
 
@@ -149,7 +144,7 @@ public class ExpenceFragment extends Fragment {
 
         @Override
         protected String doInBackground(String... strings) {
-            DatabaseClient.getInstance(getContext()).getAppDatabase().utilizationDetailsDao().insert(getUtilizationDetails(paymentMode));
+//            DatabaseClient.getInstance(getContext()).getAppDatabase().utilizationDetailsDao().insert(getUtilizationDetails(paymentMode));
             return "S";
         }
 
@@ -160,15 +155,15 @@ public class ExpenceFragment extends Fragment {
         }
     }
 
-    private UtilizationDetails getUtilizationDetails(String paymentMode) {
-        UtilizationDetails utilizationDetails = new UtilizationDetails();
-        utilizationDetails.setCategory_Id(tv_ctgryType.getTag().toString());
-        utilizationDetails.setAmount(et_amount.getText().toString());
-        utilizationDetails.setDescription(et_description.getText().toString());
-        utilizationDetails.setMode_of_payment(paymentMode);
-        utilizationDetails.setCreatedAt((new Date()).getTime());
-        utilizationDetails.setModifiedAt((new Date()).getTime());
-        return utilizationDetails;
+    private AccountDetails getUtilizationDetails(String paymentMode) {
+        AccountDetails accountDetails = new AccountDetails();
+//        accountDetails.setCategory_Id(tv_ctgryType.getTag().toString());
+//        accountDetails.setAmount(et_amount.getText().toString());
+//        accountDetails.setDescription(et_description.getText().toString());
+//        accountDetails.setMode_of_payment(paymentMode);
+//        accountDetails.setCreatedAt((new Date()).getTime());
+//        accountDetails.setModifiedAt((new Date()).getTime());
+        return accountDetails;
     }
 
     private ArrayList<SpinnerDataDO> loadCategoryData() {

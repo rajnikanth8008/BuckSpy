@@ -1,5 +1,6 @@
 package com.example.administrator.buckspy.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.administrator.buckspy.R;
 import com.github.mikephil.charting.charts.PieChart;
@@ -39,6 +41,7 @@ public class HomeFragment extends Fragment {
 
     PieChart pieChart;
     CircleImageView cim_profilephoto;
+    TextView tv_total_month, tv_total_income, tv_total_amount;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = getLayoutInflater().inflate(R.layout.app_bar_main, container, false);
         pieChart = view.findViewById(R.id.piechart);
+        tv_total_month = view.findViewById(R.id.tv_total_month);
+        tv_total_income = view.findViewById(R.id.tv_total_income);
+        tv_total_amount = view.findViewById(R.id.tv_total_amount);
         cim_profilephoto = view.findViewById(R.id.cim_profilephoto);
         cim_profilephoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +138,7 @@ public class HomeFragment extends Fragment {
         builder.show();
     }
 
+    @SuppressLint("LongLogTag")
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
