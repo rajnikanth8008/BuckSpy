@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "396494073791",
+    "firebase_url": "https://buckspy-8008.firebaseio.com",
+    "project_id": "buckspy-8008",
+    "storage_bucket": "buckspy-8008.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396494073791:android:597df673bcbb1611",
+        "android_client_info": {
+          "package_name": "com.rajnikanth.app.buckspy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "396494073791-2f9ukjquffal0kgv1qkj8pklck3trqk0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rajnikanth.app.buckspy",
+            "certificate_hash": "701fa688e3b722922b944f199cb6751a50f127ee"
+          }
+        },
+        {
+          "client_id": "396494073791-kmeuidq2ghs08srl512325qnsbpvhk16.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwtWGIcSYYc_TBp-aPPw8k21u9t28-ccY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "396494073791-kmeuidq2ghs08srl512325qnsbpvhk16.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

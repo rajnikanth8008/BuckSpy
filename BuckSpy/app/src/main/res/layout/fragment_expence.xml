@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardElevation="10dp"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <RadioGroup
+            android:id="@+id/rg_categorytype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_expence"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rbtn_selector"
+                android:button="@null"
+                android:checked="true"
+
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Expence"
+                android:textColor="@drawable/rbtn_textcolor_selector"
+                android:textSize="@dimen/_15sdp" />
+
+            <RadioButton
+                android:id="@+id/rb_income"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rbtn_selector"
+                android:button="@null"
+
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Income"
+                android:textColor="@drawable/rbtn_textcolor_selector"
+                android:textSize="@dimen/_15sdp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/ll_location_view">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <AutoCompleteTextView
+                    android:id="@+id/actv_searchplace"
+                    style="@style/MyRadioButtonRight"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:cursorVisible="false"
+                    android:drawableLeft="@drawable/ic_places"
+                    android:gravity="left|center"
+                    android:textSize="@dimen/_15sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/imv_current_loaction"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_current_location"
+                android:layout_gravity="center|end"
+                android:layout_marginTop="@dimen/_4sdp"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_amount"
+            style="@style/MyRadioButtonRight"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:cursorVisible="false"
+            android:drawableLeft="@mipmap/rupee"
+            android:gravity="left|center"
+            android:hint="Enter Amount"
+            android:inputType="number"
+            android:maxLength="8"
+            android:textSize="@dimen/_15sdp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:id="@+id/rg_amounts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text="10"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text="20"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text="50"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_2sdp"
+
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text="100"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_2sdp"
+
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text="200"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_2sdp"
+
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text="500"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RadioButton
+                        style="@style/MyRadioButtonLeft"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="@dimen/_2sdp"
+
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text="2000"
+                        android:textSize="@dimen/_10sdp" />
+
+                </RadioGroup>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <Spinner
+            android:id="@+id/sp_choose_account"
+            style="@style/MyRadioButtonRight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/sp_choose_category"
+            style="@style/MyRadioButtonRight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/et_description"
+            style="@style/MyRadioButtonRight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cursorVisible="false"
+            android:gravity="left|center"
+            android:hint="Enter Description"
+            android:lines="2"
+            android:maxLength="50"
+            android:textSize="@dimen/_15sdp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_clear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@android:color/black"
+
+                android:text="Clear"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/bt_add"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@android:color/black"
+
+                android:text="Add"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

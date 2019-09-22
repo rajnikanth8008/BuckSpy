@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BuckSpy</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="buckspy">BuckSpy</string>
+    <string name="api_key">AIzaSyBb-Rbho6NsGF4KUT2fZltGCvsmPCCFo8g</string>
+</resources>

@@ -1,0 +1,2 @@
+include ':app', ':bubblenavigation'
+rootProject.name='Cutom-Bottom-Nav'

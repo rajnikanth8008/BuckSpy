@@ -1,0 +1,29 @@
+SELECT created_timestamp,strftime('%d-%m-%Y %H:%M:%f', created_timestamp/1000.0, 'unixepoch') as createddatetime FROM ExpenseDetails
+
+SELECT created_timestamp,strftime('%m', created_timestamp/1000.0, 'unixepoch'),
+strftime('%d-%m-%Y %H:%M:%f', created_timestamp/1000.0, 'unixepoch')
+ AS createddatetime FROM ExpenseDetails WHERE strftime('%m', created_timestamp/1000.0, 'unixepoch') = '06'
+
+/*
+SELECT created_timestamp,strftime('%d-%m-%Y %H:%M:%f', created_timestamp/1000.0, 'unixepoch') as createddatetime FROM ExpenseDetails
+
+SELECT created_timestamp,strftime('%m', created_timestamp/1000.0, 'unixepoch'),
+strftime('%d-%m-%Y %H:%M:%f', created_timestamp/1000.0, 'unixepoch')
+ AS createddatetime FROM ExpenseDetails WHERE strftime('%m', created_timestamp/1000.0, 'unixepoch') = '06'
+*/
+
+
+SELECT SUM(expense_amount),SUM(income_amount),created_timestamp FROM (
+SELECT SUM(expense_amount)expense_amount,0 income_amount,strftime('%m', created_timestamp/1000.0, 'unixepoch')created_timestamp FROM ExpenseDetails
+UNION all
+SELECT 0 expense_amount,SUM(income_amount)income_amount,strftime('%m', created_timestamp/1000.0, 'unixepoch')created_timestamp FROM IncomeDetails
+)AA GROUP BY created_timestamp
+
+
+https://www.programcreek.com/java-api-examples/?class=com.google.android.gms.location.places.Place&method=getLatLng
+
+final Place place = PlacePicker.getPlace(data, reactContext);
+final CharSequence address = place.getAddress();
+final LatLng coordinate = place.getLatLng();
+final CharSequence name = place.getName();
+final CharSequence id = place.getId();
